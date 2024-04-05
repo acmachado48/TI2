@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+    <title>Controle de Estoque</title>
+    <style>
+        table.custom-table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        table.custom-table th, 
+        table.custom-table td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        table.custom-table th {
+            background-color: #f2f2f2;
+        }
+    
+        body {
+            background-color: white;
+        }
+
+        .generaltext, p {
+            font-family: Arial;
+            text-align: center;
+        }
+
+        .section--container__responsive {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-bottom: dashed;
+            border-color: gray;
+            margin-bottom: 20px; /* Espaçamento entre seções */
+        }
+
+        .section--row__responsive {
+            margin-bottom: 10px; /* Espaçamento entre linhas */
+        }
+
+        .input--down {
+            display: block;
+            margin: 0px auto;
+            margin-bottom: 10px;
+        }
+
+        .input--main__style {
+            background-color: #00FF00;
+        }
+
+        .input--remove__style {
+            background-color: red;
+        }
+
+        .input--consult__style {
+            background-color: darkblue;
+        }
+
+        .input--button {
+            font-weight: bold;
+            font-family: Arial;
+            font-size: medium;
+            border-color: transparent;
+            display: block;
+            margin: 0px auto;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .input--register {
+            display: inline;
+        }
+
+        .input--radio {
+            display: inline;
+        }
+
+        input {
+            display: block;
+            border-radius: 7px;
+            padding: 10px;
+            border-style: solid;
+            border-color: lightgray;
+            color: black;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .p--radio__display {
+            display: block;
+        }
+
+        form p {
+            text-align: initial;
+            display: inline;
+            margin-left: 15px;
+        }
+
+        .p--nomargin {
+            margin-left: 0px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="generaltext">Controle de Estoque</h1>
+
+    <section class="section--container__responsive">
+        <section class="section--mainrow__responsive first--section">
+            <h2 class="generaltext">Inserir Carro</h2>
+            <form class="form--register" action="http://localhost:6789/carro" method="post" id="form-add">
+                <p>Cor:</p>          
+                <input class="input--register" type="text" name="cor" value="" placeholder="Cor...">
+                <p>Placa:</p>              
+                <input class="input--register" type="text" name="placa" value="">
+                <p>Ano:</p>
+                <input class="input--register" type="text" name="ano" value="">
+                <p>Marca:</p>
+                <input class="input--register" type="text" name="marca" value=""> 
+                <input type="submit" value="Cadastrar" class="input--main__style input--button">
+            </form>
+        </section>
+    </section>
+
+    <section class="section--container__responsive">
+        <section class="section--row__responsive">
+            <h2 class="generaltext">Detalhar Carro</h2>
+            <form onsubmit="addPlacaToPath('form-get', 'http://localhost:6789/carro/')" method="get" id="form-get">
+                <input class="input--down" type="text" name="placa" value="" placeholder="Placa do carro..."> 
+                <input type="submit" value="Consultar" class="input--button input--consult__style">
+            </form>
+        </section>
+        
+        <script type="text/javascript">
+        function addPlacaToPath(form_name, base_url){
+            var your_form = document.getElementById(form_name);
+            var placa = your_form.elements.namedItem("placa").value;
+            action_src = base_url + placa;
+            your_form.action = action_src;
+        }
+    </script>
+        
+        <section class="section--row__responsive">
+            <h2 class="generaltext">Remover Carro</h2>
+            <form onsubmit="addPlacaToPath('form-delete', 'http://localhost:6789/carro/delete/')" method="get" id="form-delete">
+                <input class="input--down" type="text" name="placa" value="" placeholder="Placa do carro...">
+                <input type="submit" value="Remover" class="input--remove__style input--button">
+            </form>
+        </section>
+
+        <section class="section--row__responsive">
+            <h2 class="generaltext">Listar Carros</h2>
+            <form action="http://localhost:6789/carro"  method="get" id="form-all">
+                <table class="custom-table" border="1">
+                
+                    <!-- Os dados da tabela serão inseridos aqui -->
+                </table>
+                <input type="submit" value="Todos" class="input--consult__style input--button">
+            </form>            
+        </section>
+    </section>
+
+    <script type="text/javascript">
+        function addPlacaToPath(form_name, base_url){
+            var your_form = document.getElementById(form_name);
+            var placa = your_form.elements.namedItem("placa").value;
+            action_src = base_url + placa;
+            your_form.action = action_src;
+        }
+    </script>
+</body>
+</html>
+
